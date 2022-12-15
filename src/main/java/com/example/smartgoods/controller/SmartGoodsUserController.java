@@ -19,7 +19,7 @@ public class SmartGoodsUserController {
 	@Autowired
 	private SmartGoodsUserRepository SmartGoodsUserRepo;
 	
-	//register user with uuid
+	//register user with uuid header
 	@PostMapping("/registration/{uuid}")
 	public String registerUserByUuid(@PathVariable(value = "uuid") String uuid) {
 		SmartGoodsUser newUser = new SmartGoodsUser(uuid);
@@ -29,5 +29,6 @@ public class SmartGoodsUserController {
 		
 		return "kein Erfolg";
 	}
+	
 	
 }
