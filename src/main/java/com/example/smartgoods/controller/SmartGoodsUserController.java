@@ -23,11 +23,12 @@ public class SmartGoodsUserController {
 	@PostMapping("/registration/{uuid}")
 	public String registerUserByUuid(@PathVariable(value = "uuid") String uuid) {
 		SmartGoodsUser newUser = new SmartGoodsUser(uuid);
-		if(this.SmartGoodsUserRepo.save(newUser).equals(newUser)) {
-			return "Erfolg";
-		}
 		
-		return "kein Erfolg";
+		if(this.SmartGoodsUserRepo.save(newUser) != null) {
+			return "Processed Request";
+		} else if(this.SmartGoodsUserRepo.findById(uuid).isEmpty()) {
+			return "Processed Request";
+		} return "Processed Request";
 	}
 	
 	

@@ -3,6 +3,7 @@ package com.example.smartgoods.domain;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 
 import jakarta.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Formula;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -35,9 +38,13 @@ public class SmartGoodsUser {
 	@Column(name = "user_password")
 	private String userPassword;
 	
+	@Column(name = "quantity")
+	@Formula(value = "(SELECT COUNT (requirement) FROM user_requirements r WHERE r.user_uuid = uuid)")
+	private int quantity;
+	
 //	@OneToMany(targetEntity = SmartGoods.class, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "UUID", referencedColumnName = "UUID") //linkes welche in die Andere Tabelle erzeugt werden soll und rechts welche von uns reingeht
-//	private List<SmartGoods> statement;
+//	@JoinColumn(name = "user_UUID", referencedColumnName = "UUID") //linkes welche in die Andere Tabelle erzeugt werden soll und rechts welche von uns reingeht
+//	private List<SmartGoods> requirements = new ArrayList<>();
 	
 	public SmartGoodsUser() {
 		super();
@@ -52,6 +59,14 @@ public class SmartGoodsUser {
 		this.userName = userName;
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 	
 	
