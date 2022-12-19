@@ -14,7 +14,7 @@
 	<name>Smartgoods_Project</name>
 	<description>Smartgood Project</description>
 	<properties>
-		<java.version>15</java.version>
+		<java.version>19</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
